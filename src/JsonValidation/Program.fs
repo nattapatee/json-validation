@@ -65,6 +65,7 @@ module Program =
             CreateWebHostBuilder(args).Build().Run()
             exitCode
         | _ ->
-            for item in errors do
-                printfn "Error %A %A" (item.Kind) (item.Property)
+            errors |> Seq.toList |> List.iter(fun x ->
+                printfn "Error %A %A" (x.Kind) (x.Property)
+            )
             -1
